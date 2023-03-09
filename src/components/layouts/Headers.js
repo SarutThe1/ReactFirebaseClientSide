@@ -20,7 +20,7 @@ const Headers = () => {
   const handleLogout =()=>{
     auth.signOut()
     dispatch(logout())
-    navigate('/')
+    navigate('/login')
     
   }
 
@@ -38,11 +38,9 @@ const Headers = () => {
           </Nav>
 
           <Navbar.Collapse className="justify-content-end">
-          <Nav.Link ><Link to='/login'><Button className="btn btn-success" style={{marginRight:"5px"}}>Login</Button></Link> </Nav.Link>
+          <Nav.Link style={{marginRight:"10px"}}> <Link to='/register'>Register</Link> </Nav.Link>
+          <Nav.Link style={{marginRight:"10px"}}><Link to='/login'><Button className="btn btn-success" >Login</Button></Link> </Nav.Link>
           <Nav.Link onClick={handleLogout} > <Button className="btn btn-danger">Logout</Button> </Nav.Link>
-            {/* <Navbar.Text>
-              Signed in as: <a href="#login">Mark Otto</a>
-            </Navbar.Text> */}
           </Navbar.Collapse>
         </Container>
       </Navbar>

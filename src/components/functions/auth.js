@@ -19,3 +19,8 @@ export const currentUser = async(authtoken) => {
   })
 }
 
+export const register = async(value)=>
+  await axios.post(process.env.REACT_APP_API + '/register',value);
+
+export const loginN = async(value)=>
+  await axios.post(process.env.REACT_APP_API + '/login',value);

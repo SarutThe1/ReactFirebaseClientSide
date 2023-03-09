@@ -5,7 +5,8 @@ import Headers from "./components/layouts/Headers";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./components/pages/Home";
-import Login from "./components/pages/Login";
+import Login from "./components/pages/auth/Login";
+import Register from "./components/pages/auth/Register";
 import Secret from "./components/pages/Secret";
 
 //Check user login
@@ -55,6 +56,7 @@ function App() {
           {/* Public */}
           <Route path="/" element={<Home />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/register" element={<Register />}></Route>
           {/* Private */}
           <Route
             path="/secret"
