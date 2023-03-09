@@ -1,6 +1,6 @@
 import React from "react";
 
-import {Container,Navbar,Nav} from 'react-bootstrap';
+import {Container,Navbar,Nav,Button} from 'react-bootstrap';
 
 //Router-dom
 import { Link,useNavigate } from "react-router-dom";
@@ -38,8 +38,8 @@ const Headers = () => {
           </Nav>
 
           <Navbar.Collapse className="justify-content-end">
-          <Nav.Link ><Link to='/login'>Login</Link> </Nav.Link>
-          <Nav.Link onClick={handleLogout} > Logout </Nav.Link>
+          <Nav.Link ><Link to='/login'><Button className="btn btn-success" style={{marginRight:"5px"}}>Login</Button></Link> </Nav.Link>
+          <Nav.Link onClick={handleLogout} > <Button className="btn btn-danger">Logout</Button> </Nav.Link>
             {/* <Navbar.Text>
               Signed in as: <a href="#login">Mark Otto</a>
             </Navbar.Text> */}

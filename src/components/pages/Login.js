@@ -49,9 +49,6 @@ const Login = () => {
         <h1>{user.value}</h1>
         <Button onClick={handleLoginByGoogle}>Sign in with Google</Button>
 
-        <hr/>
-        <Button onClick={()=>dispatch(login())} >Login</Button>
-        <Button onClick={()=>dispatch(logout())} >Logout</Button>
       </Container>
     
 
