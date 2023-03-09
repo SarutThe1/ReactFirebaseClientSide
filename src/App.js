@@ -1,4 +1,4 @@
-import "./App.css";
+
 import Headers from "./components/layouts/Headers";
 
 //Router-dom
