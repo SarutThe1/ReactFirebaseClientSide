@@ -6,20 +6,32 @@ import { Container, Button, Form } from "react-bootstrap";
 import { auth, googleAuthProvider } from "../../firebase";
 
 //redux
-import { useSelector, useDispatch } from "react-redux";
-import { login, logout } from "../../../store/userSlice";
+import { useDispatch } from "react-redux";
+import { login } from "../../../store/userSlice";
 
 //function
 import { createAndUpdateUser, loginN } from "../../functions/auth";
 
-const Login = () => {
-  const { user } = useSelector((state) => ({ ...state }));
-  const dispatch = useDispatch();
+//Router-dom
+import { useNavigate } from "react-router-dom";
 
+const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
   const [value, setValue] = useState({
     email: "",
     password: "",
   });
+
+  //Redirect
+  const roleBaseRedirect = (role) => {
+    if(role === 'admin'){
+      navigate('/admin/index')
+    }else{
+      navigate('/')
+    }
+  }
 
   //Login normal
   const handleChange = (e) => {
@@ -28,11 +40,25 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(value);
+    
+    
 
     loginN(value)
       .then((res) => {
         alert("Login successful");
+        
+        dispatch(
+          login({
+            email: res.data.payload.user.email,
+            name: res.data.payload.user.username,
+            telephone: res.data.payload.user.telephone,
+            role:res.data.payload.user.role,
+            token: res.data.token,
+          })
+        );
+        localStorage.setItem('token',res.data.token);
+        roleBaseRedirect(res.data.payload.user.role);
+        
       })
       .catch((err) => {
         console.log(err.response.data);

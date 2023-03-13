@@ -7,12 +7,11 @@ import { Link,useNavigate } from "react-router-dom";
 import {auth} from '../firebase'
 
 //redux
-import { useSelector,useDispatch } from 'react-redux'
-import { login,logout } from '../../store/userSlice'
+import { useDispatch } from 'react-redux'
+import { logout } from '../../store/userSlice'
 
 const Headers = () => {
 
-  const {user} = useSelector((state)=> ({...state}))
   const dispatch = useDispatch()
 
   const navigate = useNavigate();
