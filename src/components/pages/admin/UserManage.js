@@ -1,12 +1,12 @@
 import React from 'react'
 import MenubarAdmin from '../../layouts/MenubarAdmin'
 
-const Home = () => {
+const UserManage = () => {
   return (
     <div className='container-fluid'>
     <div className='row'>
       <div className='col-md-2'><MenubarAdmin/></div>
-      <div className='col'><h1>Home Admin</h1> </div>
+      <div className='col'><h1>Manage User</h1> </div>
       
     </div>
     
@@ -15,4 +15,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default UserManage

@@ -12,6 +12,8 @@ import Secret from "./components/pages/Secret";
 
 //admin pages
 import HomeAdmin from "./components/pages/admin/Home";
+import UserManage from "./components/pages/admin/UserManage";
+import GoogleUserManage from "./components/pages/admin/GoogleUserManage";
 
 //Check user login
 import React, { useEffect } from "react";
@@ -90,7 +92,26 @@ function App() {
             }>
           </Route>
 
-          {/* Private */}
+          <Route 
+            path="/admin/user-manage" 
+            element={
+              <AdminRoute>
+                <UserManage/>
+              </AdminRoute>
+            }>
+          </Route>
+
+          <Route 
+            path="/admin/google-user-manage" 
+            element={
+              <AdminRoute>
+                <GoogleUserManage/>
+              </AdminRoute>
+            }>
+          </Route>
+
+
+          {/* User login route */}
           <Route
             path="/secret"
             element={
