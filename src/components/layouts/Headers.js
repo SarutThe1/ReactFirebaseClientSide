@@ -33,6 +33,8 @@ const Headers = () => {
           <Nav className="me-auto">
             <Nav.Link> <Link to='/'>Home</Link> </Nav.Link>
             <Nav.Link> <Link to='/secret'>Secret</Link> </Nav.Link>
+            <Nav.Link> <Link to='/admin/index'>Admin</Link> </Nav.Link>
+            
             
           </Nav>
 

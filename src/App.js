@@ -24,6 +24,7 @@ import { currentUser,currentNormUser } from "./components/functions/auth";
 
 //Routes
 import UserRoute from "./components/routes/UserRoute";
+import AdminRoute from "./components/routes/AdminRoute";
 
 function App() {
   const dispatch = useDispatch();
@@ -80,7 +81,14 @@ function App() {
           <Route path="/register" element={<Register />}></Route>
 
           {/* admin */}
-          <Route path="/admin/index" element={<HomeAdmin />}></Route>
+          <Route 
+            path="/admin/index" 
+            element={
+              <AdminRoute>
+                <HomeAdmin />
+              </AdminRoute>
+            }>
+          </Route>
 
           {/* Private */}
           <Route
