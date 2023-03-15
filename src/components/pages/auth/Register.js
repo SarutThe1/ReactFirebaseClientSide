@@ -14,7 +14,7 @@ const Register = () => {
     telephone: "",
     password: "",
     password1: "",
-    images:[]
+    picture:[]
   });
 
   const handleChange = (e) => {

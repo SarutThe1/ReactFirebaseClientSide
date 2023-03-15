@@ -1,4 +1,3 @@
-
 import Headers from "./components/layouts/Headers";
 
 //Router-dom
@@ -9,6 +8,9 @@ import Home from "./components/pages/Home";
 import Login from "./components/pages/auth/Login";
 import Register from "./components/pages/auth/Register";
 import Secret from "./components/pages/Secret";
+
+//User pages
+import MyProfile from "./components/pages/user/MyProfile";
 
 //admin pages
 import HomeAdmin from "./components/pages/admin/Home";
@@ -22,7 +24,7 @@ import { login } from "./store/userSlice";
 import { auth } from "./components/firebase";
 
 //function
-import { currentUser,currentNormUser } from "./components/functions/auth";
+import { currentUser, currentNormUser } from "./components/functions/auth";
 
 //Routes
 import UserRoute from "./components/routes/UserRoute";
@@ -32,20 +34,23 @@ function App() {
   const dispatch = useDispatch();
 
   const idtoken = localStorage.token;
-  if(idtoken){
+  if (idtoken) {
     currentNormUser(idtoken)
-    .then(res=>{
-      dispatch(
-        login({
-          email: res.data.email,
-          name: res.data.username,
-          telephone: res.data.telephone,
-          token: idtoken,
-        })
-      );
-    }).catch(err=>{
-      console.log(err)
-    })
+      .then((res) => {
+        dispatch(
+          login({
+            email: res.data.email,
+            name: res.data.username,
+            firstname: res.data.firstname,
+            lastname: res.data.lastname,
+            telephone: res.data.telephone,
+            token: idtoken,
+          })
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   useEffect(() => {
@@ -83,33 +88,32 @@ function App() {
           <Route path="/register" element={<Register />}></Route>
 
           {/* admin */}
-          <Route 
-            path="/admin/index" 
+          <Route
+            path="/admin/index"
             element={
               <AdminRoute>
                 <HomeAdmin />
               </AdminRoute>
-            }>
-          </Route>
+            }
+          ></Route>
 
-          <Route 
-            path="/admin/user-manage" 
+          <Route
+            path="/admin/user-manage"
             element={
               <AdminRoute>
-                <UserManage/>
+                <UserManage />
               </AdminRoute>
-            }>
-          </Route>
+            }
+          ></Route>
 
-          <Route 
-            path="/admin/google-user-manage" 
+          <Route
+            path="/admin/google-user-manage"
             element={
               <AdminRoute>
-                <GoogleUserManage/>
+                <GoogleUserManage />
               </AdminRoute>
-            }>
-          </Route>
-
+            }
+          ></Route>
 
           {/* User login route */}
           <Route
@@ -120,6 +124,16 @@ function App() {
               </UserRoute>
             }
           ></Route>
+
+          <Route
+            path="/myprofile"
+            element={
+              <UserRoute>
+                <MyProfile />
+              </UserRoute>
+            }
+          ></Route>
+
         </Routes>
       </BrowserRouter>
     </>

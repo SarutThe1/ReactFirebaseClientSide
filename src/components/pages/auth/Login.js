@@ -51,6 +51,8 @@ const Login = () => {
           login({
             email: res.data.payload.user.email,
             name: res.data.payload.user.username,
+            firstname: res.data.payload.user.firstname,
+            lastname: res.data.payload.user.lastname,
             telephone: res.data.payload.user.telephone,
             role:res.data.payload.user.role,
             token: res.data.token,
@@ -75,13 +77,14 @@ const Login = () => {
         const { user } = result;
         const idToken = await user.getIdTokenResult();
 
-        console.log(user.email, idToken);
+        console.log(user);
         createAndUpdateUser(idToken.token)
           .then((res) => {
             dispatch(
               login({
                 email: res.data.email,
                 name: res.data.name,
+                picture: res.data.picture,
                 token: idToken.token,
               })
             );
