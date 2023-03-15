@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 
@@ -6,7 +6,12 @@ import { Container, Button, Form } from "react-bootstrap";
 
 import FileUpload from './FileUpload'
 
+const initialstate = {
+  picture:""
+}
+
 const MyProfile = () => {
+  const [values,setValues] = useState(initialstate)
   const dispatch = useDispatch();
   const { user } = useSelector((state) => ({ ...state }));
   const profilePicture = user.user.picture;

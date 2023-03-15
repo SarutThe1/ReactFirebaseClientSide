@@ -5,41 +5,40 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 
 const FileUpload = () => {
-  const {user} = useSelector((state)=>({...state}))
-  
-  
+  const { user } = useSelector((state) => ({ ...state }));
+
   const handleChangeFile = (e) => {
     const files = e.target.files;
     if (files) {
-        
-            Resize.imageFileResizer(
-                files[0],
-                300,
-                300,
-                "JPEG",
-                100,
-                0,
-                (uri) => {
-                  axios.post(process.env.REACT_APP_API + "/images",
-                  {
-                    image : uri,
-                  },
-                  {
-                    headers: {
-                      authtoken: user.user.token
-                    }
-                  }
-                  )
-                  .then(res=>{
-                    console.log(res)
-                  }).catch(err=>{
-                    console.log(err)
-                  })
+      Resize.imageFileResizer(
+        files[0],
+        300,
+        300,
+        "JPEG",
+        100,
+        0,
+        (uri) => {
+          axios
+            .post(
+              process.env.REACT_APP_API + "/images",
+              {
+                image: uri,
+              },
+              {
+                headers: {
+                  authtoken: user.user.token,
                 },
-                "base64"
-              );
-        
-      
+              }
+            )
+            .then((res) => {
+              console.log(res);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        },
+        "base64"
+      );
     }
   };
 
@@ -53,7 +52,7 @@ const FileUpload = () => {
             type="file"
             className="form-control"
             name="file"
-            accept="images"
+            accept="images/*"
             hidden
           />
         </label>
