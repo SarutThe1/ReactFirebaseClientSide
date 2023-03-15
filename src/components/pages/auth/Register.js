@@ -3,6 +3,7 @@ import { Container, Button, Form } from "react-bootstrap";
 
 //function
 import { register } from "../../functions/auth";
+import FileUpload from "./FileUpload";
 
 const Register = () => {
   const [value, setValue] = useState({
@@ -13,6 +14,7 @@ const Register = () => {
     telephone: "",
     password: "",
     password1: "",
+    images:[]
   });
 
   const handleChange = (e) => {
@@ -103,6 +105,8 @@ const Register = () => {
               onChange={handleChange}
             />
           </div>
+          <br/>
+          <FileUpload/>
           <br />
           <div className="form-group">
             <Button
