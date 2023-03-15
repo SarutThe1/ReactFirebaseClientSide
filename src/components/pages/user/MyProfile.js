@@ -4,22 +4,34 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { Container, Button, Form } from "react-bootstrap";
 
+import FileUpload from './FileUpload'
+
 const MyProfile = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => ({ ...state }));
   const profilePicture = user.user.picture;
+  /* console.log(user) */
   return (
     <>
       <Container>
         <div>
             {profilePicture
-                ? 
+                ? //true
+                <div>
                     <img
                     src={user.user.picture}
                     alt="avatar-img"
                     className="myprofile-avatar"
                     />
-                :<h2>No Profile Picture</h2>
+                </div>
+                    
+
+                : //false
+                <div>
+                    <h2>No Profile Picture</h2>
+                    <FileUpload/>
+                </div>
+                
             }
             
           
@@ -40,7 +52,7 @@ const MyProfile = () => {
             <input
               type="text"
               class="form-control"
-              name="username"
+              name="name"
               value={user.user.name}
             />
           </div>

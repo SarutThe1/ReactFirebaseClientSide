@@ -40,7 +40,7 @@ function App() {
         dispatch(
           login({
             email: res.data.email,
-            name: res.data.username,
+            name: res.data.name,
             firstname: res.data.firstname,
             lastname: res.data.lastname,
             telephone: res.data.telephone,
@@ -60,12 +60,13 @@ function App() {
 
         currentUser(idToken.token)
           .then((res) => {
-            console.log("res", res.data);
+            /* console.log("res", res.data); */
             //send to redux
             dispatch(
               login({
                 email: res.data.email,
                 name: res.data.name,
+                picture : res.data.picture,
                 token: idToken.token,
               })
             );

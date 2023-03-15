@@ -29,7 +29,7 @@ const Login = () => {
     if(role === 'admin'){
       navigate('/admin/index')
     }else{
-      navigate('/')
+      navigate('/myprofile')
     }
   }
 
@@ -50,7 +50,7 @@ const Login = () => {
         dispatch(
           login({
             email: res.data.payload.user.email,
-            name: res.data.payload.user.username,
+            name: res.data.payload.user.name,
             firstname: res.data.payload.user.firstname,
             lastname: res.data.payload.user.lastname,
             telephone: res.data.payload.user.telephone,

@@ -3,27 +3,27 @@ import { Container, Button, Form } from "react-bootstrap";
 
 //function
 import { register } from "../../functions/auth";
-import FileUpload from "./FileUpload";
+
 
 const Register = () => {
   const [value, setValue] = useState({
     email: "",
-    username: "",
+    name: "",
     firstname: "",
     lastname: "",
     telephone: "",
     password: "",
     password1: "",
-    picture:[]
   });
 
   const handleChange = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
+    console.log(value)
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(value);
+    /* console.log(value); */
     if (value.password !== value.password1) {
       alert("Password not match!");
     } else {
@@ -55,7 +55,7 @@ const Register = () => {
             <input
               type="text"
               class="form-control"
-              name="username"
+              name="name"
               onChange={handleChange}
             />
           </div>
@@ -105,8 +105,6 @@ const Register = () => {
               onChange={handleChange}
             />
           </div>
-          <br/>
-          <FileUpload/>
           <br />
           <div className="form-group">
             <Button
