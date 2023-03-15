@@ -7,7 +7,7 @@ import { Container, Button, Form } from "react-bootstrap";
 import FileUpload from './FileUpload'
 
 const initialstate = {
-  picture:""
+  picture:[]
 }
 
 const MyProfile = () => {
@@ -34,7 +34,7 @@ const MyProfile = () => {
                 : //false
                 <div>
                     <h2>No Profile Picture</h2>
-                    <FileUpload/>
+                    <FileUpload values={values} setValues={setValues}  />
                 </div>
                 
             }
