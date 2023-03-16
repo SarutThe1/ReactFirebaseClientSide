@@ -4,7 +4,9 @@ import { useSelector } from "react-redux";
 
 import axios from "axios";
 
-const FileUpload = ({values,setValues}) => {
+import { Avatar, Badge, Space } from "antd";
+
+const FileUpload = ({ values, setValues }) => {
   const { user } = useSelector((state) => ({ ...state }));
 
   const handleChangeFile = (e) => {
@@ -33,8 +35,8 @@ const FileUpload = ({values,setValues}) => {
             )
             .then((res) => {
               picUpload.push(res.data);
-              console.log('fileUpload',picUpload);
-              setValues({...values,picture:picUpload});
+              console.log("fileUpload", picUpload);
+              setValues({ ...values, picture: picUpload });
             })
             .catch((err) => {
               console.log(err);
@@ -47,6 +49,11 @@ const FileUpload = ({values,setValues}) => {
 
   return (
     <>
+      <span className="avartar-item">
+        <Badge count="X">
+          <Avatar shape="square"  />
+        </Badge>
+      </span>
       <div className="form-group">
         <label className="btn btn-primary">
           Choose profile picture...

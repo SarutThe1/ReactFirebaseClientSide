@@ -39,6 +39,7 @@ function App() {
       .then((res) => {
         dispatch(
           login({
+            _id: res.data._id,
             email: res.data.email,
             name: res.data.name,
             firstname: res.data.firstname,
@@ -64,6 +65,7 @@ function App() {
             //send to redux
             dispatch(
               login({
+                _id: res.data._id,
                 email: res.data.email,
                 name: res.data.name,
                 picture : res.data.picture,

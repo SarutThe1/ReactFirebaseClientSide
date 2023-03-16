@@ -15,7 +15,7 @@ const MyProfile = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => ({ ...state }));
   const profilePicture = user.user.picture;
-  /* console.log(user) */
+  console.log('user',user) 
   return (
     <>
       <Container>
@@ -46,6 +46,7 @@ const MyProfile = () => {
           <div className="form-group">
             <label>Email</label>
             <input
+              disabled
               type="text"
               class="form-control"
               name="email"
