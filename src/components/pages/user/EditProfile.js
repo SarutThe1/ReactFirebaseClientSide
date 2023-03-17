@@ -6,15 +6,15 @@ import { useSelector } from "react-redux";
 
 import { Container, Button, Form } from "react-bootstrap";
 
+import FileUpload from "./FileUpload";
 
 //antd
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar } from "antd";
 
-const MyProfile = () => {
+const EditProfile = () => {
   const { user } = useSelector((state) => ({ ...state }));
   const profilePicture = user.user.picture;
-  console.log("user", user);
   return (
     <>
       <Container>
@@ -30,11 +30,27 @@ const MyProfile = () => {
             </div>
           ) : (
             //false
-            <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
-              <Avatar
-                size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }}
-                icon={<UserOutlined style={{fontSize:75}}/>}
-              />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <div className="row" >
+                <div className="col-md-12" style={{display: "flex",justifyContent: "center",alignItems:'center'}}>
+                  <Avatar
+                    size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }}
+                    icon={<UserOutlined style={{ fontSize: 75 }} />}
+                  />
+                </div>
+
+                <div className="col" style={{display: "flex",justifyContent: "center",alignItems:'center',marginTop:'20px'}}>
+                  <FileUpload />
+                </div>
+              </div>
+
+              
             </div>
           )}
         </div>
@@ -53,7 +69,6 @@ const MyProfile = () => {
           <div className="form-group">
             <label>Username</label>
             <input
-              disabled
               type="text"
               class="form-control"
               name="name"
@@ -64,7 +79,6 @@ const MyProfile = () => {
           <div className="form-group">
             <label>Firstname</label>
             <input
-              disabled
               type="text"
               class="form-control"
               name="firstname"
@@ -74,7 +88,6 @@ const MyProfile = () => {
           <div className="form-group">
             <label>Lastname</label>
             <input
-              disabled
               type="text"
               class="form-control"
               name="lastname"
@@ -84,7 +97,6 @@ const MyProfile = () => {
           <div className="form-group">
             <label>telephone</label>
             <input
-              disabled
               type="text"
               class="form-control"
               name="telephone"
@@ -93,12 +105,11 @@ const MyProfile = () => {
           </div>
         </Form>
         <br />
-        <Link to={"/editprofile"}>
-          <Button style={{ float: "right" }}>Edit Profile</Button>
-        </Link>
+
+        <Button style={{ float: "right" }}>Save</Button>
       </Container>
     </>
   );
 };
 
-export default MyProfile;
+export default EditProfile;

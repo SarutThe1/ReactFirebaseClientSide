@@ -11,6 +11,7 @@ import Secret from "./components/pages/Secret";
 
 //User pages
 import MyProfile from "./components/pages/user/MyProfile";
+import EditProfile from "./components/pages/user/EditProfile";
 
 //admin pages
 import HomeAdmin from "./components/pages/admin/Home";
@@ -133,6 +134,15 @@ function App() {
             element={
               <UserRoute>
                 <MyProfile />
+              </UserRoute>
+            }
+          ></Route>
+
+          <Route
+            path="/editprofile"
+            element={
+              <UserRoute>
+                <EditProfile />
               </UserRoute>
             }
           ></Route>
