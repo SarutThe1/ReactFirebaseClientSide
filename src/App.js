@@ -10,7 +10,6 @@ import Register from "./components/pages/auth/Register";
 import Secret from "./components/pages/Secret";
 
 //User pages
-import MyProfile from "./components/pages/user/MyProfile";
 import EditProfile from "./components/pages/user/EditProfile";
 
 //admin pages
@@ -46,6 +45,7 @@ function App() {
             firstname: res.data.firstname,
             lastname: res.data.lastname,
             telephone: res.data.telephone,
+            picture: res.data.picture,
             token: idtoken,
           })
         );
@@ -69,6 +69,9 @@ function App() {
                 _id: res.data._id,
                 email: res.data.email,
                 name: res.data.name,
+                firstname: res.data.firstname,
+                lastname: res.data.lastname,
+                telephone: res.data.telephone,
                 picture : res.data.picture,
                 token: idToken.token,
               })
@@ -125,15 +128,6 @@ function App() {
             element={
               <UserRoute>
                 <Secret />
-              </UserRoute>
-            }
-          ></Route>
-
-          <Route
-            path="/myprofile"
-            element={
-              <UserRoute>
-                <MyProfile />
               </UserRoute>
             }
           ></Route>

@@ -29,7 +29,7 @@ const Login = () => {
     if(role === 'admin'){
       navigate('/admin/index')
     }else{
-      navigate('/myprofile')
+      navigate('/editprofile')
     }
   }
 
@@ -49,6 +49,7 @@ const Login = () => {
         
         dispatch(
           login({
+            _id: res.data.payload.user._id,
             email: res.data.payload.user.email,
             name: res.data.payload.user.name,
             firstname: res.data.payload.user.firstname,
@@ -56,6 +57,7 @@ const Login = () => {
             telephone: res.data.payload.user.telephone,
             role:res.data.payload.user.role,
             token: res.data.token,
+            picture: res.data.payload.user.picture,
           })
         );
         localStorage.setItem('token',res.data.token);
@@ -82,14 +84,19 @@ const Login = () => {
           .then((res) => {
             dispatch(
               login({
+                _id: res.data._id,
                 email: res.data.email,
                 name: res.data.name,
+                firstname: res.data.firstname,
+                lastname: res.data.lastname,
+                telephone: res.data.telephone,
                 picture: res.data.picture,
                 token: idToken.token,
               })
             );
           })
           .catch((err) => console.log(err));
+          navigate('/editprofile')
       })
       .catch((err) => {
         console.log(err);

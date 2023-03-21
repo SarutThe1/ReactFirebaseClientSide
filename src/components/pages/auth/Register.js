@@ -5,7 +5,13 @@ import { Container, Button, Form } from "react-bootstrap";
 import { register } from "../../functions/auth";
 
 
+//Router-dom
+import { useNavigate } from "react-router-dom";
+
 const Register = () => {
+
+  const navigate = useNavigate();
+
   const [value, setValue] = useState({
     email: "",
     name: "",
@@ -30,6 +36,7 @@ const Register = () => {
       register(value)
       .then(res=>{
         alert(res.data)
+        navigate('/login')
       }).catch(err=>{
         console.log(err.response.data);
         alert(err.response.data)

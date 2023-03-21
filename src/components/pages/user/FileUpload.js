@@ -4,19 +4,19 @@ import { useSelector } from "react-redux";
 
 import axios from "axios";
 
-import { Avatar, Badge, Space } from "antd";
 
-const FileUpload = ({ values, setValues }) => {
+const FileUpload = ({ values, setValues , loading, setLoading }) => {
   const { user } = useSelector((state) => ({ ...state }));
 
   const handleChangeFile = (e) => {
     const files = e.target.files;
     if (files) {
+      setLoading(true)
       const picUpload = values.picture;
       Resize.imageFileResizer(
         files[0],
-        300,
-        300,
+        150,
+        150,
         "JPEG",
         100,
         0,
@@ -34,11 +34,13 @@ const FileUpload = ({ values, setValues }) => {
               }
             )
             .then((res) => {
-              picUpload.push(res.data);
-              console.log("fileUpload", picUpload);
+              setLoading(false)
+              picUpload.push(res.data.url);
+              console.log("fileUpload", res.data.url);
               setValues({ ...values, picture: picUpload });
             })
             .catch((err) => {
+              setLoading(false)
               console.log(err);
             });
         },
@@ -49,24 +51,24 @@ const FileUpload = ({ values, setValues }) => {
 
   return (
     <>
-      <span className="avartar-item">
-        <Badge count="X">
-          <Avatar shape="square"  />
-        </Badge>
-      </span>
-      <div className="form-group">
-        <label className="btn btn-primary">
-          Choose profile picture...
-          <input
-            onChange={handleChangeFile}
-            type="file"
-            className="form-control"
-            name="file"
-            accept="images/*"
-            hidden
-          />
-        </label>
-      </div>
+        <div className="form-group" >
+          <label >
+            {loading
+              ? <p>Loading...</p>
+              : <p>Choose profile picture...</p>
+            }
+            
+            <input
+              onChange={handleChangeFile}
+              type="file"
+              className="form-control"
+              name="file"
+              accept="images/*"
+              /* hidden */
+            />
+          </label>
+        </div>
+      
     </>
   );
 };
