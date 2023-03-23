@@ -9,7 +9,7 @@ import { Container, Button, Form } from "react-bootstrap";
 import FileUpload from "./FileUpload";
 
 //antd
-import { UserOutlined } from "@ant-design/icons";
+
 import { Avatar } from "antd";
 
 //function
@@ -27,11 +27,11 @@ const initialstate = {
 const EditProfile = () => {
   const navigate = useNavigate();
   const { user } = useSelector((state) => ({ ...state }));
-  const profilePicture = user.user.picture;
-  const[loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const [values, setValues] = useState(initialstate);
-  
+  const pic = values.picture[0];
+  console.log(pic);
   useEffect(() => {
     loadData();
   }, []);
@@ -48,7 +48,6 @@ const EditProfile = () => {
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
-    
   };
 
   const handleSubmit = (e) => {
@@ -66,66 +65,56 @@ const EditProfile = () => {
   return (
     <>
       <Container>
-        <div>
-          {profilePicture ? (
-            //true
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Avatar
-                size={{ xs: 124, sm: 132, md: 140, lg: 164, xl: 180, xxl: 200 }}
-                src={
-                  <img
-                    src={profilePicture}
-                    alt="avatar-img"
-                    className="myprofile-avatar"
-                  />
-                }
-              />
-            </div>
-          ) : (
-            //false
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <div className="row">
+        {typeof pic === "string" ? (
+          <div>
+            {user.user.picture &&
+              user.user.picture.map((item) => (
                 <div
-                  className="col-md-12"
                   style={{
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                  }}
-                >
-                  <Avatar
-                    size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }}
-                    icon={<UserOutlined style={{ fontSize: 75 }} />}
-                  />
-                </div>
-
-                <div
-                  className="col"
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
+                    marginBottom: "10px",
                     marginTop: "20px",
                   }}
                 >
-                  <FileUpload values={values} setValues={setValues} loading={loading} setLoading={setLoading} />
+                  <Avatar src={item} size={130} />
                 </div>
-              </div>
-            </div>
-          )}
-        </div>
+              ))}
+          </div>
+        ) : (
+          <div
+            style={{
+              display: "grid",
+              justifyContent: "center",
+              alignItems: "center",
+              marginBottom: "20px",
+            }}
+          >
+            <FileUpload
+              values={values}
+              setValues={setValues}
+              loading={loading}
+              setLoading={setLoading}
+            />
+          </div>
+        )}
+
+        {/* <div
+          style={{
+            display: "grid",
+            justifyContent: "center",
+            alignItems: "center",
+            marginBottom: "20px",
+          }}
+        >
+          <FileUpload
+            values={values}
+            setValues={setValues}
+            loading={loading}
+            setLoading={setLoading}
+          />
+        </div> */}
         {/* MENU SECTION */}
         <Form>
           <div className="form-group">
