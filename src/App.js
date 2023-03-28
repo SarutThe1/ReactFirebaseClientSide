@@ -11,6 +11,8 @@ import Secret from "./components/pages/Secret";
 
 //User pages
 import EditProfile from "./components/pages/user/EditProfile";
+import MyPets from "./components/pages/user/MyPets";
+import RegisterPet from "./components/pages/pets/RegisterPet";
 
 //admin pages
 import HomeAdmin from "./components/pages/admin/Home";
@@ -72,7 +74,7 @@ function App() {
                 firstname: res.data.firstname,
                 lastname: res.data.lastname,
                 telephone: res.data.telephone,
-                picture : res.data.picture,
+                picture: res.data.picture,
                 token: idToken.token,
               })
             );
@@ -140,6 +142,26 @@ function App() {
               </UserRoute>
             }
           ></Route>
+
+          <Route
+            path="/mypets"
+            element={
+              <UserRoute>
+                <MyPets />
+              </UserRoute>
+            }
+          ></Route>
+
+          <Route
+            path="/registerpet"
+            element={
+              <UserRoute>
+                <RegisterPet />
+              </UserRoute>
+            }
+          ></Route>
+
+
 
         </Routes>
       </BrowserRouter>
