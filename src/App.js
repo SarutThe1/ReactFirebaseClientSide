@@ -13,6 +13,8 @@ import Secret from "./components/pages/Secret";
 import EditProfile from "./components/pages/user/EditProfile";
 import MyPets from "./components/pages/user/MyPets";
 import RegisterPet from "./components/pages/pets/RegisterPet";
+import UpdatePet from "./components/pages/pets/UpdatePet";
+import SinglePet from "./components/pages/pets/SinglePet";
 
 //admin pages
 import HomeAdmin from "./components/pages/admin/Home";
@@ -31,6 +33,7 @@ import { currentUser, currentNormUser } from "./components/functions/auth";
 //Routes
 import UserRoute from "./components/routes/UserRoute";
 import AdminRoute from "./components/routes/AdminRoute";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -161,8 +164,23 @@ function App() {
             }
           ></Route>
 
+          <Route
+            path="/updatepet/:id"
+            element={
+              <UserRoute>
+                <UpdatePet />
+              </UserRoute>
+            }
+          ></Route>
 
-
+          <Route
+            path="/singlepet/:id"
+            element={
+              <UserRoute>
+                <SinglePet />
+              </UserRoute>
+            }
+          ></Route>
         </Routes>
       </BrowserRouter>
     </>

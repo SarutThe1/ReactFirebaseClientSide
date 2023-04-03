@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "antd";
-import { EditOutlined, DeleteOutlined} from '@ant-design/icons';
-
+import { EditOutlined, DeleteOutlined,EyeOutlined } from '@ant-design/icons';
+import { Link } from "react-router-dom";
 
 
 const { Meta } = Card;
@@ -9,10 +9,13 @@ const { Meta } = Card;
 
 
 const UserPetCard = ({ pet,handleDelete }) => {
+  
   const { _id,name, gender, species, age, petpics } = pet;
   return (
     <>
+      
       <Card
+      
         hoverable
         style={{
           width: 500,
@@ -30,8 +33,8 @@ const UserPetCard = ({ pet,handleDelete }) => {
         }
 
         actions={[
-            
-            <EditOutlined className="text-warning" />,
+          <Link to={'/singlepet/' +_id}><EyeOutlined className="text-success" /></Link>,
+            <Link to={'/updatepet/' +_id}><EditOutlined className="text-warning" /></Link>,
             <DeleteOutlined className="text-danger" onClick={()=>handleDelete(_id)}/>,
           ]}
       >

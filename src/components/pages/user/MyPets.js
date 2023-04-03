@@ -45,29 +45,26 @@ const MyPets = () => {
     }
   }
 
+  
 
   return (
     <>
         <Container>
-        <div>
+        <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
             {
               loading 
               ? <h1>Loading...</h1>
-              : <h1>My pets</h1>
+              : <h1>You have {pet.length} pets</h1>
             }
           </div>
-          <br/>
-          <div style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:20}}>
-            <Link to={'/registerpet'}>
-                <Button className=" btn btn-lg">Add Pet</Button>
-            </Link>
-          </div>
+          
           <br/>
           <div style={{display:'grid',alignItems:'center',justifyContent:'center'}}>
             {
 
               pet.map((item)=>
                 <div key={item._id} style={{marginBottom:20}}>
+                  
                   <UserPetCard pet={item} handleDelete={handleDelete} />
                 </div>
                 
@@ -76,7 +73,12 @@ const MyPets = () => {
             
           </div>
 
-          
+          <br/>
+          <div style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:20}}>
+            <Link to={'/registerpet'}>
+                <Button className=" btn btn-lg">+ Add more pet</Button>
+            </Link>
+          </div>
             
         </Container>
     </>
