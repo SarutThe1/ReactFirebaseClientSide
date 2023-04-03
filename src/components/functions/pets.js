@@ -10,3 +10,9 @@ export const createPet = async (authtoken, value) => {
 
 export const listPet = async()=>
     await axios.get(process.env.REACT_APP_API + '/pet')
+
+export const searchFilters = async (arg) =>
+    await axios.post(process.env.REACT_APP_API + '/search/filters', arg)
+
+export const deletePet = async(id)=>
+    await axios.delete(process.env.REACT_APP_API + '/pet/' + id)

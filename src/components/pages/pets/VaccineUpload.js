@@ -15,8 +15,8 @@ const VaccineUpload = ({ values, setValues, loading, setLoading }) => {
       const picUpload = values.vaccinationpic;
       Resize.imageFileResizer(
         files[0],
-        150,
-        150,
+        500,
+        500,
         "JPEG",
         100,
         0,
