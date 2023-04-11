@@ -8,6 +8,7 @@ import Home from "./components/pages/Home";
 import Login from "./components/pages/auth/Login";
 import Register from "./components/pages/auth/Register";
 import Secret from "./components/pages/Secret";
+import Otp from "./components/pages/auth/Otp";
 
 //User pages
 import EditProfile from "./components/pages/user/EditProfile";
@@ -98,6 +99,7 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
+          <Route path="/otp" element={<Otp />}></Route>
 
           {/* admin */}
           <Route

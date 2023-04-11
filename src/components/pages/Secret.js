@@ -1,31 +1,52 @@
-import React from 'react'
+import React from "react";
 import { useSelector } from "react-redux";
-import { Avatar } from "antd";
+import { Avatar, Badge } from "antd";
+import { CameraOutlined } from '@ant-design/icons';
+
 const Secret = () => {
   const { user } = useSelector((state) => ({ ...state }));
-  console.log(user)
+  console.log(user);
+  const pic = user.user.picture[0];
   return (
-    <div>You login for this Secret
-      
-      {user.user.picture &&
-        user.user.picture.map((item) => (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              marginBottom: "10px",
-              marginTop: "20px",
-            }}
-          >
-              <Avatar src={item} size={130} />
-           
-          </div>
-        ))}
-        
-        
-    </div>
-  )
-}
+    <>
+      <h2>You login for this Secret</h2>
 
-export default Secret
+      <div>
+        {typeof pic === "string" ? (
+          <div>
+            {user.user.picture &&
+              user.user.picture.map((item, index) => (
+                
+                  <Badge
+                    size="large"
+                    count={<CameraOutlined />}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <Avatar src={item} key={index} size={100} />
+                  </Badge>
+                
+              ))}
+          </div>
+        ) : (
+          <div>
+            {user.user.picture &&
+              user.user.picture.map((item, index) => (
+                  
+                  <Badge
+
+                    offset={[0,80]}
+                    count={<CameraOutlined style={{fontSize:'20px'}}/>}
+                    style={{ cursor: "pointer"}}
+                  >
+                    <Avatar src={item.url} key={index} size={100} />
+                  </Badge>
+                
+              ))}
+          </div>
+        )}
+      </div>
+    </>
+  );
+};
+
+export default Secret;
