@@ -1,15 +1,15 @@
 import React from "react";
 import Resize from "react-image-file-resizer";
 import { useSelector } from "react-redux";
-import { Avatar, Spin, Badge } from "antd";
-import { CameraOutlined } from "@ant-design/icons";
+import { Avatar, Spin } from "antd";
+import { CameraOutlined, UserOutlined } from "@ant-design/icons";
 import axios from "axios";
 
 const FileUpload = ({ values, setValues, loading, setLoading }) => {
   const { user } = useSelector((state) => ({ ...state }));
-  console.log(user.user.picture.length)
+
   const handleChangeFile = (e) => {
-    if (user.user.picture.length > 0) {
+    if (user.user.picture.length !== 0) {
       const { picture } = values;
       const public_id = picture[0].public_id;
       handleRemove(public_id);
@@ -104,12 +104,12 @@ const FileUpload = ({ values, setValues, loading, setLoading }) => {
       )
       .then((res) => {
         setLoading(false);
-        
-        let filterPicture = picture .filter((item) => {
+
+        let filterPicture = picture.filter((item) => {
           picture.length = 0;
           return item.public_id !== public_id;
         });
-        setValues({ ...values, picture : filterPicture });
+        setValues({ ...values, picture: filterPicture });
       })
       .catch((err) => {
         setLoading(false);
@@ -119,26 +119,41 @@ const FileUpload = ({ values, setValues, loading, setLoading }) => {
 
   return (
     <>
-      <div>
-        {values.picture &&
-          values.picture.map((item) => (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                marginBottom: "10px",
-                marginTop: "20px",
-              }}
-            >
-             
-              <Avatar src={item.url} size={130} />
-             
-            </div>
-          ))}
+      
+        {values.picture.length !== 0 ? (
+          <div>
+            {values.picture &&
+              values.picture.map((item,index) => (
+                <div key={index}
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    marginBottom: "10px",
+                    marginTop: "20px",
+                  }}
+                >
+                  <Avatar src={item.url} size={130} />
+                </div>
+              ))}
+          </div>
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginBottom: "10px",
+              marginTop: "20px",
+            }}
+          >
+            <Avatar icon={<UserOutlined style={{fontSize:95}}/>} size={130} />
+          </div>
+        )}
+
         <div>
           <label
-            className="btn btn-success"
+            className="btn btn-secondary"
             style={{
               borderRadius: "50%",
               position: "relative",
@@ -148,7 +163,7 @@ const FileUpload = ({ values, setValues, loading, setLoading }) => {
           >
             {loading ? (
               <p>
-                <Spin />
+                <Spin size="small"/>
               </p>
             ) : (
               <CameraOutlined style={{ fontSize: 20 }} />
@@ -163,7 +178,7 @@ const FileUpload = ({ values, setValues, loading, setLoading }) => {
             />
           </label>
         </div>
-      </div>
+      
     </>
   );
 };

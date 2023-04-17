@@ -31,7 +31,7 @@ const EditProfile = () => {
 
   const [values, setValues] = useState(initialstate);
   const pic = values.picture[0];
-  console.log(pic);
+ 
   useEffect(() => {
     loadData();
   }, []);
@@ -100,21 +100,6 @@ const EditProfile = () => {
           </div>
         )}
 
-        {/* <div
-          style={{
-            display: "grid",
-            justifyContent: "center",
-            alignItems: "center",
-            marginBottom: "20px",
-          }}
-        >
-          <FileUpload
-            values={values}
-            setValues={setValues}
-            loading={loading}
-            setLoading={setLoading}
-          />
-        </div> */}
         {/* MENU SECTION */}
         <Form>
           <div className="form-group">
@@ -122,7 +107,7 @@ const EditProfile = () => {
             <input
               disabled
               type="text"
-              class="form-control"
+              className="form-control"
               name="email"
               value={values.email}
             />
@@ -131,7 +116,7 @@ const EditProfile = () => {
             <label>Username</label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               name="name"
               value={values.name}
               onChange={handleChange}
@@ -142,7 +127,7 @@ const EditProfile = () => {
             <label>Firstname</label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               name="firstname"
               value={values.firstname}
               onChange={handleChange}
@@ -152,7 +137,7 @@ const EditProfile = () => {
             <label>Lastname</label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               name="lastname"
               value={values.lastname}
               onChange={handleChange}
@@ -162,7 +147,7 @@ const EditProfile = () => {
             <label>telephone</label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               name="telephone"
               value={values.telephone}
               onChange={handleChange}
