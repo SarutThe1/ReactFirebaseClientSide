@@ -37,6 +37,7 @@ const Headers = () => {
             <Nav.Link> <Link to='/editprofile'>Profile</Link> </Nav.Link>
             <Nav.Link> <Link to='/mypets'>My Pets</Link> </Nav.Link>
             <Nav.Link> <Link to='/otp'>OTP</Link> </Nav.Link>
+            <Nav.Link> <Link to='/address'>Address</Link> </Nav.Link>
             
             
           </Nav>

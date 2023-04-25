@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 //Router-dom
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // Redux
 import { useSelector } from "react-redux";
 
@@ -24,14 +24,21 @@ const initialstate = {
   picture: [],
 };
 
-const EditProfile = () => {
+const EditProfile = ({ response }) => {
+  
   const navigate = useNavigate();
   const { user } = useSelector((state) => ({ ...state }));
   const [loading, setLoading] = useState(false);
 
   const [values, setValues] = useState(initialstate);
   const pic = values.picture[0];
- 
+
+  const [add, setAdd] = useState({ address: response });
+
+  console.log(response);
+  /* console.log(user.user.address) */
+  /* console.log(values) */
+
   useEffect(() => {
     loadData();
   }, []);
@@ -55,7 +62,14 @@ const EditProfile = () => {
     updateUser(user.user.token, user.user._id, values)
       .then((res) => {
         console.log(res);
-        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    updateUser(user.user.token, user.user._id, add)
+      .then((res) => {
+        console.log(res);
+        window.location.reload()
       })
       .catch((err) => {
         console.log(err);
@@ -152,6 +166,29 @@ const EditProfile = () => {
               value={values.telephone}
               onChange={handleChange}
             />
+          </div>
+
+          <div className="form-group">
+            <label>Address</label>
+            <Link to={"/address"} style={{ textDecoration: "none" }}>
+              {Object.keys(response).length === 0 ? (
+                <input
+                  readOnly
+                  type="text"
+                  className="form-control"
+                  name="address"
+                  value={user.user.address}
+                />
+              ) : (
+                <input
+                  readOnly
+                  type="text"
+                  className="form-control"
+                  name="address"
+                  value={response}
+                />
+              )}
+            </Link>
           </div>
         </Form>
         <br />

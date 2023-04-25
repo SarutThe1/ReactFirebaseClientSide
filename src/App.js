@@ -9,6 +9,7 @@ import Login from "./components/pages/auth/Login";
 import Register from "./components/pages/auth/Register";
 import Secret from "./components/pages/Secret";
 import Otp from "./components/pages/auth/Otp";
+import Address from "./components/pages/user/Address";
 
 //User pages
 import EditProfile from "./components/pages/user/EditProfile";
@@ -23,7 +24,7 @@ import UserManage from "./components/pages/admin/UserManage";
 import GoogleUserManage from "./components/pages/admin/GoogleUserManage";
 
 //Check user login
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "./store/userSlice";
 import { auth } from "./components/firebase";
@@ -52,6 +53,7 @@ function App() {
             lastname: res.data.lastname,
             telephone: res.data.telephone,
             picture: res.data.picture,
+            address: res.data.address,
             token: idtoken,
           })
         );
@@ -79,6 +81,7 @@ function App() {
                 lastname: res.data.lastname,
                 telephone: res.data.telephone,
                 picture: res.data.picture,
+                address: res.data.address,
                 token: idToken.token,
               })
             );
@@ -90,6 +93,8 @@ function App() {
     return () => unsubscribe();
   }, []);
 
+  const [response,setResponse] = useState({})
+
   return (
     <>
       <BrowserRouter>
@@ -100,6 +105,7 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/otp" element={<Otp />}></Route>
+          <Route path="/address" element={<Address setResponse={setResponse}/>}></Route>
 
           {/* admin */}
           <Route
@@ -143,7 +149,7 @@ function App() {
             path="/editprofile"
             element={
               <UserRoute>
-                <EditProfile />
+                <EditProfile response={response}/>
               </UserRoute>
             }
           ></Route>
